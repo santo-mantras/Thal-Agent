@@ -1,0 +1,40 @@
+# Thalassemia International Federation (TIF) Guidelines Summary
+
+## 1. Introduction to Thalassemia
+Thalassemia is an inherited blood disorder characterized by the production of an abnormal form of hemoglobin, the protein in red blood cells that carries oxygen. The disorder results in excessive destruction of red blood cells, which leads to anemia.
+
+## 2. Hemoglobin Thresholds
+For patients with Transfusion-Dependent Thalassemia (TDT), the goal of blood transfusions is to maintain a pre-transfusion hemoglobin (Hb) level between 9.0 and 10.5 g/dL. Maintaining this level suppresses ineffective erythropoiesis and minimizes the stimulus for increased iron absorption, while avoiding the risks associated with excessive transfusions.
+If Hb drops below 7.0 g/dL, the patient is in a critical anemic state and requires immediate medical attention and transfusion scheduling.
+
+## 3. Iron Overload and Chelation Therapy
+Repeated blood transfusions inevitably lead to iron overload because the human body lacks an active mechanism to excrete excess iron. 
+Serum Ferritin levels are used to monitor total body iron stores:
+- Normal levels: 20 to 250 ng/mL.
+- Safe levels for TDT patients: Under 1000 ng/mL.
+- Danger levels: Consistent levels above 2500 ng/mL are associated with cardiac complications, endocrine dysfunction, and liver fibrosis.
+
+When Serum Ferritin exceeds 1000 ng/mL, Iron Chelation Therapy must be initiated. Common chelators include:
+- Deferasirox (Oral)
+- Deferiprone (Oral)
+- Deferoxamine (Subcutaneous infusion)
+
+## 4. Diet and Nutrition
+Patients should adopt a low-iron diet to help manage iron overload.
+Foods to Avoid:
+- Red meat (beef, lamb, pork)
+- Liver and organ meats
+- Iron-fortified cereals and breads
+- Vitamin C supplements taken with meals (Vitamin C severely increases iron absorption).
+
+Recommended Habits:
+- Drink black tea with meals, as tannins significantly inhibit the absorption of dietary iron.
+- Consume dairy products (milk, cheese, yogurt) with meals, as calcium decreases iron absorption.
+- Maintain adequate Vitamin E and Folic Acid intake.
+
+## 5. Emergency Protocols
+Patients should seek immediate emergency care if they experience:
+- Sudden, unexplained shortness of breath.
+- Severe heart palpitations or irregular heartbeats (arrhythmia), which may indicate cardiac iron overload.
+- Extreme lethargy or sudden pale/jaundiced skin.
+- Fever above 38.5°C (101.3°F), especially in splenectomized patients, as they are at high risk for severe bacterial infections.

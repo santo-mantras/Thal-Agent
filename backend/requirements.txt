@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+qdrant-client
+google-adk
+pydantic
+python-dotenv
+requests
+sqlalchemy
+python-multipart
+pymupdf
+rapidocr-onnxruntime

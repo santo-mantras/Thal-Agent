@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.env
+
+# Database and Data
+*.db
+qdrant_data/
+backend/uploads/
+backend/thal_app.db
+
+# Flutter
+frontend/build/
+frontend/.dart_tool/
+frontend/.pub-cache/
+frontend/.packages
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+
+# OS generated files
+.DS_Store
+Thumbs.db

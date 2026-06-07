@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  # 1. The Vector Database (Dual-Layer KB)
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - ./qdrant_data:/qdrant/storage
+
+  # 3. FastAPI & Google ADK Backend (The Brain)
+  ai-backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./mcp_config:/app/mcp_config
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/mcp_config/creds.json
+      # Will be passed from local env
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      - qdrant
+
+
