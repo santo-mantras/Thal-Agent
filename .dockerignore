@@ -1,0 +1,19 @@
+# Environments
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Local Data
+data/
+chroma/
+*.db
+
+# Logs
+*.log
+
+# Git
+.git/
+
+# Sensitive config files
+mcp_config/creds.json
