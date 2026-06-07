@@ -25,3 +25,5 @@ frontend/.flutter-plugins-dependencies
 # OS generated files
 .DS_Store
 Thumbs.db
+
+mcp_config/
