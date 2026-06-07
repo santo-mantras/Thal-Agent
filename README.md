@@ -1,4 +1,4 @@
-﻿# 🩸 CareMate AI — Thalassemia Care Assistant
+# 🩸 CareMate AI — Thalassemia Care Assistant
 
 <div align="center">
 
@@ -52,7 +52,7 @@ CareMate AI combines a **Retrieval-Augmented Generation (RAG)** pipeline with **
 
 ## 🏗️ Architecture Overview
 
-`mermaid
+```mermaid
 graph TB
     User["👤 Patient / Doctor"]
     Frontend["📱 Flutter Web UI<br/>(Static Assets)"]
@@ -78,11 +78,11 @@ graph TB
     
     AgentOrchestrator -.->|JSON| FastAPI
     FastAPI -.->|Data| Frontend
-`
+```
 
 ### Data Flow Diagram
 
-`mermaid
+```mermaid
 graph LR
     UserMsg["💬 User Query / Upload"]
     API["🔌 FastAPI Router"]
@@ -100,7 +100,7 @@ graph LR
     Logic --> Comm
     Comm --> DB
     Comm --> Output["✅ Final Response"]
-`
+```
 
 ---
 
@@ -127,7 +127,7 @@ The app intelligently routes the user interface and AI responses based on the lo
 
 ## 📁 Project Structure
 
-`
+```text
 /
 ├── Dockerfile                  # Multi-stage container definition
 ├── README.md                   # This file
@@ -148,7 +148,7 @@ The app intelligently routes the user interface and AI responses based on the lo
 │       ├── doctor_portal.dart  # Doctor UI
 │       └── api_service.dart    # Backend connection logic
 └── qdrant_data/                # Local Vector DB storage
-`
+```
 
 ---
 
@@ -166,7 +166,7 @@ The app requires the following secret to function properly.
 
 ## 🐳 Running Locally
 
-`ash
+```bash
 # 1. Clone the repo
 git clone https://github.com/santo-mantras/Thal-Agent.git
 cd Thal-Agent
@@ -176,7 +176,7 @@ docker-compose up --build
 
 # 3. Open in browser
 # http://localhost:8000
-`
+```
 
 ---
 
