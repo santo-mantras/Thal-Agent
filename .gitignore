@@ -9,10 +9,10 @@ env/
 .env
 
 # Database and Data
-*.db
+# *.db
 qdrant_data/
 backend/uploads/
-backend/thal_app.db
+# backend/thal_app.db
 
 # Flutter
 frontend/build/
