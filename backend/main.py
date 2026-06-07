@@ -299,14 +299,30 @@ def ask_question(data: AskData):
         return {"answer": "Error: GEMINI_API_KEY not found."}
 
     # 1. Embed the query
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:embedContent?key={gemini_api_key}"
-    resp = requests.post(url, json={
-        "model": "models/gemini-embedding-2",
-        "content": {"parts": [{"text": data.query}]}
-    })
+    import time
     
-    if resp.status_code != 200:
-        return {"answer": f"Embedding error: {resp.text}"}
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:embedContent?key={gemini_api_key}"
+    
+    embed_retries = 3
+    embed_delay = 5
+    for attempt in range(embed_retries):
+        resp = requests.post(url, json={
+            "model": "models/gemini-embedding-2",
+            "content": {"parts": [{"text": data.query}]}
+        })
+        
+        if resp.status_code == 429:
+            if attempt < embed_retries - 1:
+                time.sleep(embed_delay)
+                embed_delay *= 2
+                continue
+            else:
+                return {"answer": "Embedding API is currently receiving too many requests. Please try again."}
+                
+        if resp.status_code != 200:
+            return {"answer": f"Embedding error: {resp.text}"}
+            
+        break
         
     embedding = resp.json()["embedding"]["values"]
 
@@ -353,20 +369,38 @@ def ask_question(data: AskData):
     
     prompt += f"Medical Literature:\n{literature_context}\n\nCurrent Question:\n{data.query}"
     
+    import time
+    
     gen_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={gemini_api_key}"
-    gen_resp = requests.post(gen_url, json={
-        "contents": [{"parts": [{"text": prompt}]}],
-        "systemInstruction": {"parts": [{"text": rag_instructions}]}
-    })
+    
+    max_retries = 3
+    retry_delay = 5
+    
+    for attempt in range(max_retries):
+        gen_resp = requests.post(gen_url, json={
+            "contents": [{"parts": [{"text": prompt}]}],
+            "systemInstruction": {"parts": [{"text": rag_instructions}]}
+        })
+        
+        if gen_resp.status_code == 429:
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+                retry_delay *= 2  # Exponential backoff
+                continue
+            else:
+                return {"answer": "I am currently receiving too many requests. Please wait a minute and try again."}
+                
+        if gen_resp.status_code != 200:
+            try:
+                error_data = gen_resp.json()
+                if error_data.get("error", {}).get("code") == 503:
+                    return {"answer": "I'm currently experiencing high demand and need a quick breather. Please try asking again in a moment!"}
+                return {"answer": f"API Error: {error_data.get('error', {}).get('message', 'Unknown error')}"}
+            except:
+                return {"answer": "I encountered an unexpected error processing your request. Please try again."}
 
-    if gen_resp.status_code != 200:
-        try:
-            error_data = gen_resp.json()
-            if error_data.get("error", {}).get("code") == 503:
-                return {"answer": "I'm currently experiencing high demand and need a quick breather. Please try asking again in a moment!"}
-            return {"answer": f"API Error: {error_data.get('error', {}).get('message', 'Unknown error')}"}
-        except:
-            return {"answer": "I encountered an unexpected error processing your request. Please try again."}
+        # Success
+        break
 
     answer = gen_resp.json()["candidates"][0]["content"]["parts"][0]["text"]
     
