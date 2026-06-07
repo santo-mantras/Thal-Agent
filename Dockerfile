@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y curl git unzip xz-utils zip libglu1-mes
 # Setup Flutter (Stable channel)
 RUN git clone https://github.com/flutter/flutter.git -b stable /usr/local/flutter
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
+# Force tar to not try preserving ownership (fixes HF Spaces build error)
+ENV TAR_OPTIONS="--no-same-owner"
 RUN flutter doctor -v
 
 # Copy frontend source
@@ -23,7 +25,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Install system dependencies for OCR/OpenCV (used by rapidocr)
-RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0
+RUN apt-get update && apt-get install -y libgl1 libglib2.0-0
 
 # Install Python requirements
 COPY backend/requirements.txt .

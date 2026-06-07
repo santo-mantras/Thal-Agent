@@ -33,7 +33,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+@app.get("/health")
 def read_root():
     return {"status": "healthy", "service": "Thalassemia AI Backend"}
 
